@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -11,5 +12,10 @@ namespace Domain
         public String Email { get; set; }
 
         public UserProfile Profile { get; set; }
+
+        public List<BlogPost> BlogPosts { get; set; }
+
+
    }
+
 }
