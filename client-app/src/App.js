@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import Navigation from "./components/Navigation";
+import React, { Component } from 'react'
+import axios from 'axios'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {
+    values: []
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:5000/api/value')
+      .then((response) =>{
+        this.setState({
+          values: response.data
+        })
+      })
+    
+  }
+  render() {
+    return (
+      <>
+      <Navigation/>
+
+
+      <div className="container mt-3">
+        <ul>
+          {this.state.values.map((val) => (
+            <li key={val.id}>{val.name}</li>
+          ))}
+        </ul>
+      </div>
+      </>
+    );
+  }
 }
 
 export default App;
