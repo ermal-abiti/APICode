@@ -16,6 +16,8 @@ namespace Domain
         public List<BlogPost> BlogPosts { get; set; }
 
 
+        public List<PostComment> PostComments { get; set; }
+
    }
 
 }

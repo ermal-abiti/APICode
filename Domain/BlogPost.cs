@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -16,5 +17,7 @@ namespace Domain
 
         public int UserId { get; set; }
         public User User { get; set; }
+        
+              public List<PostComment> PostComments { get; set; }
     }
 }
