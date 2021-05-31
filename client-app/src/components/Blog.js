@@ -5,15 +5,22 @@ import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom';
 
 export default class Blog extends Component {
-    state = {
-        posts: [],
-        users: [],
+    constructor(props) {
+        super(props);
+        this.deletePost = this.deletePost.bind(this);
+        this.state = {
+            posts: [],
+            users: [],
+        }
     }
+    
+    
 
     componentDidMount() {
         axios.get('http://localhost:5000/api/blogpost')
           .then((response) =>{
             this.setState({
+                ...this.state,
               posts: response.data
             })
           })
@@ -21,6 +28,7 @@ export default class Blog extends Component {
         axios.get('http://localhost:5000/api/user')
         .then ((response) =>{
             this.setState({
+                ...this.state,
                 users: response.data
             })
         })
@@ -49,26 +57,33 @@ export default class Blog extends Component {
 
     deletePost(id) {
         if (window.confirm('Are you sure you want to delete this post ?')) {
-            fetch('http://localhost:5000/api/blogpost/' + id, {
+            axios.delete('http://localhost:5000/api/blogpost/' + id, {
                 method: 'DELETE',
                 header: {
                     'Accept': 'application/json',
                     'Content-Type' : 'application/json'
                 }
-            });
-            return <Redirect to='/blog'/>;
+            })
+            axios.get('http://localhost:5000/api/blogpost')
+            .then((response) =>{
+            this.setState({
+                ...this.state,
+              posts: response.data
+            })
+          })
         }
     }
 
     render() {
-        const { bId, bTitle, bContent, bDatePosted, bUserId } = this.state
+
+        const { posts, bId, bTitle, bContent, bDatePosted, bUserId } = this.state
         return (
             
             <div className="">
                 
 
                 <div className="text-center"><a className="btn btn-primary" href="/add_blog">Add Post</a></div>
-                {this.state.posts.map(post => (
+                {posts.map(post => (
                     
                     <Card  key={post.id} className="mt-3 mb-3 ">
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
