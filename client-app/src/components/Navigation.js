@@ -4,13 +4,14 @@ import { Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 export default class Navigation extends Component {
     render() {
         return (
-            <Navbar bg="light" expand="lg">
+            <Navbar bg="primary" expand="lg" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">Estator</Navbar.Brand>
+                <Navbar.Brand href="/">Estator</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/blog">Blog</Nav.Link>
                     <Nav.Link href="#link">Listings</Nav.Link>
                     <NavDropdown title="User" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">User</NavDropdown.Item>
