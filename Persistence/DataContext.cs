@@ -21,6 +21,6 @@ namespace Persistence
         public DbSet<UserProfile> UserProfiles { get; set; } 
         public DbSet<BlogPost> BlogPosts { get;set; }
 
-        public DbSet<PostComment> PostComment { get;set; }
+        public DbSet<PostComment> PostComments { get;set; }
     }
 }
