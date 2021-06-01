@@ -9,14 +9,14 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210530174516_Blog22222")]
-    partial class Blog22222
+    [Migration("20210601193251_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Domain.BlogPost", b =>
                 {
@@ -38,7 +38,36 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("BlogPosts");
+                });
+
+            modelBuilder.Entity("Domain.PostComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("BlogPostId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DatePosted")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("content")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BlogPostId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PostComments");
                 });
 
             modelBuilder.Entity("Domain.User", b =>
@@ -101,6 +130,32 @@ namespace Persistence.Migrations
                     b.ToTable("Values");
                 });
 
+            modelBuilder.Entity("Domain.BlogPost", b =>
+                {
+                    b.HasOne("Domain.User", "User")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Domain.PostComment", b =>
+                {
+                    b.HasOne("Domain.BlogPost", "BlogPost")
+                        .WithMany("PostComments")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.User", null)
+                        .WithMany("PostComments")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("BlogPost");
+                });
+
             modelBuilder.Entity("Domain.UserProfile", b =>
                 {
                     b.HasOne("Domain.User", "User")
@@ -112,8 +167,17 @@ namespace Persistence.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.BlogPost", b =>
+                {
+                    b.Navigation("PostComments");
+                });
+
             modelBuilder.Entity("Domain.User", b =>
                 {
+                    b.Navigation("BlogPosts");
+
+                    b.Navigation("PostComments");
+
                     b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
