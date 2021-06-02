@@ -20,6 +20,8 @@ namespace Domain
         public User User { get; set; }
 
         public List<Auction> Auctions { get; set; }
+
+        public List<ListingComment> ListingComments { get; set; }
         
         
               
