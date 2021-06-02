@@ -6,6 +6,9 @@ import EditBlog from './components/EditBlog'
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Listing from  './components/Listing'
+import AddListing from './components/AddListing'
+import EditListing from './components/EditListing'
+
 
 
 class App extends Component {
@@ -25,6 +28,8 @@ class App extends Component {
             <Route path="/add_blog" component={AddBlog} exact/>
             <Route path="/edit_blog" component={EditBlog} exact/>
             <Route path="/listing" component={Listing} exact/>
+            <Route path="/add_listing" component={AddListing} exact/>
+            <Route path="/edit_listing" component={EditListing} exact/>
           </Switch>
         </div>
       </BrowserRouter>
