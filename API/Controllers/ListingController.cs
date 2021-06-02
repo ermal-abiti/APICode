@@ -23,8 +23,8 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ListingController>>> GetListings() {
-            return await _context.Listing.ToListAsync();
+        public async Task<ActionResult<IEnumerable<Listing>>> GetListings() {
+            return await _context.Listings.ToListAsync();
         }
 
         [HttpGet("{id}")]
