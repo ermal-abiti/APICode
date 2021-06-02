@@ -14,6 +14,7 @@ namespace Domain
         public UserProfile Profile { get; set; }
 
         public List<BlogPost> BlogPosts { get; set; }
+        public List<Listing> Listings{ get; set; }
 
 
         public List<PostComment> PostComments { get; set; }
