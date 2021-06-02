@@ -28,7 +28,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Auction>> GetAuctions(int id) {
+        public async Task<ActionResult<Auction>> GetAuction(int id) {
             var auction = await _context.Auctions.FindAsync(id);
 
             if (auction == null) {
