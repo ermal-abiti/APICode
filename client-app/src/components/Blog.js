@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import axios from "axios"
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { Redirect } from 'react-router-dom';
+import PostCommentForm from './PostCommentForm'
+import PostComment from './PostComment'
+
 
 export default class Blog extends Component {
     constructor(props) {
@@ -87,12 +89,8 @@ export default class Blog extends Component {
                     
                     <Card  key={post.id} className="mt-3 mb-3 ">
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted}</Card.Header>
-                    <Card.Body>
-                        <Card.Title>{post.title}</Card.Title>
-                        <Card.Text>
-                        {post.content}
-                        </Card.Text>
+                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
+                        <div className="mt-3">
                         <Link className="btn btn-primary" to={{
                             pathname: '/edit_blog',
                             state: {
@@ -103,15 +101,25 @@ export default class Blog extends Component {
                                 bUserId: post.userId
                             }
                         }}>Edit Post</Link>
-
-                        <div className="mt-3 mb-3">
+                        
                             <Button variant="danger" onClick={() => this.deletePost(post.id)}>
                                 Delete Post
                             </Button>
                         </div>
+                        </Card.Header>
+                    <Card.Body>
+                        <Card.Title>{post.title}</Card.Title>
+                        <Card.Text>
+                        {post.content}
+                        </Card.Text>
+                        
                         {/* <a href="/edit_blog" className="btn btn-primary">Edit Post</a> */}
                         {/* <Button variant="primary">Edit Post</Button> */}
                     </Card.Body>
+                    <Card.Footer>
+                        <PostComment postId={post.id}/>
+                        <PostCommentForm blogPostId={post.id} />
+                    </Card.Footer>
                     </Card>
                 )).reverse()}
             </div>
