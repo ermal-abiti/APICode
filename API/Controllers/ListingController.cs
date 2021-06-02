@@ -24,11 +24,11 @@ namespace API.Controllers
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ListingController>>> GetListings() {
-            return await _context.BlogPosts.ToListAsync();
+            return await _context.Listing.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Listing>> GetBlogPost(int id) {
+        public async Task<ActionResult<Listing>> GetListing(int id) {
             var listing = await _context.Listings.FindAsync(id);
 
             if (listing == null) {
