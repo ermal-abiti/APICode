@@ -23,28 +23,28 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<BlogPost>>> GetBlogPosts() {
+        public async Task<ActionResult<IEnumerable<ListingController>>> GetListings() {
             return await _context.BlogPosts.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<BlogPost>> GetBlogPost(int id) {
-            var blogPost = await _context.BlogPosts.FindAsync(id);
+        public async Task<ActionResult<Listing>> GetBlogPost(int id) {
+            var listing = await _context.Listings.FindAsync(id);
 
-            if (blogPost == null) {
+            if (listing == null) {
                 return NotFound();
             }
 
-            return blogPost;
+            return listing;
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBlogPost(int id, BlogPost blogPost) {
-            if (id != blogPost.Id) {
+        public async Task<IActionResult> PutListing(int id, Listing listing) {
+            if (id != listing.Id) {
                 return BadRequest();
             }
 
-            _context.Entry(blogPost).State = EntityState.Modified;
+            _context.Entry(listing).State = EntityState.Modified;
 
             try {
                 await _context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace API.Controllers
 
             catch (DbUpdateConcurrencyException)
             {
-                if (!BlogPostExists(id))
+                if (!ListingExists(id))
                 {
                     return NotFound();
                 }
@@ -66,31 +66,31 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<BlogPost>> PostBlogPost(BlogPost blogPost){
-            _context.BlogPosts.Add(blogPost);
+        public async Task<ActionResult<Listing>> PostListing(Listing listing){
+            _context.Listings.Add(listing);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetBlogPost", new { id = blogPost.Id }, blogPost);
+            return CreatedAtAction("GetListing", new { id = listing.Id }, listing);
         }
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<BlogPost>> DeleteBlogPost(int id)
+        public async Task<ActionResult<Listing>> DeleteListing(int id)
         {
-            var blogPost = await _context.BlogPosts.FindAsync(id);
-            if (blogPost == null)
+            var listing = await _context.Listings.FindAsync(id);
+            if (listing == null)
             {
                 return NotFound();
             }
 
-            _context.BlogPosts.Remove(blogPost);
+            _context.Listings.Remove(listing);
             await _context.SaveChangesAsync();
 
-            return blogPost;
+            return listing;
         }
 
-        private bool BlogPostExists(int id) {
-            return _context.BlogPosts.Any(e => e.Id == id);
+        private bool ListingExists(int id) {
+            return _context.Listings.Any(e => e.Id == id);
         }
 
         
