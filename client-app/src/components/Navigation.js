@@ -13,6 +13,7 @@ export default class Navigation extends Component {
                     <Nav.Link href="/">Home</Nav.Link>
                     <Nav.Link href="/blog">Blog</Nav.Link>
                     <Nav.Link href="/listing">Listings</Nav.Link>
+                    <Nav.Link href="/auction">Auction</Nav.Link>
                     <NavDropdown title="User" id="basic-nav-dropdown">
                     <NavDropdown.Item href="#action/3.1">User</NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
