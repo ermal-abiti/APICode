@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios"
 import { Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import ListingComment from './ListingComment'
 
 
 export default class Listing extends Component {
@@ -97,6 +98,7 @@ export default class Listing extends Component {
                         </Card.Text>
                     </Card.Body>
                     <Card.Footer>
+                        <ListingComment listingId={post.id}/>
                         <h1>${post.price}</h1>
                     </Card.Footer>
                     </Card>
