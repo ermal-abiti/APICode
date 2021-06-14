@@ -89,7 +89,7 @@ export default class Blog extends Component {
                     
                     <Card  key={post.id} className="mt-3 mb-3 ">
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted.split('T')[0]}
+                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
                         <div className="mt-3">
                         <Link className="btn btn-primary" to={{
                             pathname: '/edit_blog',
