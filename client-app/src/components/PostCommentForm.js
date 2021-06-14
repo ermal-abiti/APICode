@@ -30,6 +30,7 @@ export default class PostCommentForm extends Component {
         .then(res=>res.json()).then((result)=>{
             // alert(result);
             // console.log(result);
+            window.location.reload();
             // this.setState({...this.state, redirect: true})
 
         },
