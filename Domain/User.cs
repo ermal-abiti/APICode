@@ -4,36 +4,25 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Domain
 {
-    public abstract class User: IdentityUser
+    public class User: IdentityUser
 
     {
+        public int Id { get; set; }
+        public String UserName { get; set; }
+        public String PasswordHash { get; set; }
+        public String Email { get; set; }
 
-        public String FirstName {get; set;}
-        public String LastName {get;set;}
-        public abstract String Role { get; set; }
+        public int UserRoleId {get; set;}
+        public UserRole UserRole {get; set;}
 
         public UserProfile Profile { get; set; }
 
-        
+        public List<BlogPost> BlogPosts { get; set; }
+        public List<Listing> Listings{ get; set; }
 
 
         public List<PostComment> PostComments { get; set; }
 
    }
-
-    public class Admin: User {
-        public override String Role {get;set;} = "Admin";
-    }
-
-    public class Seller: User {
-        public override String Role {get;set;} = "Seller";
-
-        public List<BlogPost> BlogPosts { get; set; }
-        public List<Listing> Listings{ get; set; }
-    }
-
-    public class Client: User {
-        public override String Role {get;set;} = "Client";
-    }
 
 }
