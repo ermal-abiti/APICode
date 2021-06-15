@@ -42,6 +42,8 @@ namespace API
                     policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
             });
+
+            services.AddScoped<IUserRepository, UserRepository>();
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
