@@ -5,7 +5,7 @@ import AddBlog from './components/AddBlog'
 import EditBlog from './components/EditBlog'
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
+import axios from "axios";
 import Listing from  './components/Listing'
 import AddListing from './components/AddListing'
 import EditListing from './components/EditListing'
@@ -13,6 +13,8 @@ import EditListing from './components/EditListing'
 import Auction from './components/Auction'
 import AddAuction from './components/AddAuction'
 
+
+import RegisterForm from './components/RegisterForm'
 
 
 class App extends Component {
@@ -39,6 +41,7 @@ class App extends Component {
 
             <Route path="/auction" component={Auction} exact/>
             <Route path="/add_auction" component={AddAuction} exact/>
+            <Route path="/register" component={RegisterForm} exact/>
           </Switch>
         </div>
       </BrowserRouter>
