@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistence;
 using Microsoft.EntityFrameworkCore;
+using API.Helpers;
+
 
 namespace API
 {
@@ -44,6 +46,7 @@ namespace API
             });
 
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<JwtService>();
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 

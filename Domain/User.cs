@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 
 namespace Domain
@@ -9,7 +10,10 @@ namespace Domain
     {
         public int Id { get; set; }
         public String UserName { get; set; }
+        
+        [JsonIgnore]
         public String Password {get;set;}
+
         public String Email { get; set; }
 
         public int UserRoleId {get; set;}

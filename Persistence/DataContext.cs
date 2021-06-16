@@ -14,6 +14,9 @@ namespace Persistence
                 .HasOne(b => b.User)
                 .WithMany(u => u.BlogPosts)
                 .HasForeignKey(b => b.UserId);
+            
+            modelBuilder.Entity<User>(entity=>{entity.HasIndex(e=>e.UserName).IsUnique();});
+            modelBuilder.Entity<User>(entity=>{entity.HasIndex(e=>e.Email).IsUnique();});
         }
 
         public DbSet<Value> Values { get; set; }
