@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import { Redirect } from 'react-router';
+import { Button } from "react-bootstrap";
 
 const LoginForm = () => {
     const[username, setUsername] = useState('');
@@ -26,17 +27,34 @@ const LoginForm = () => {
         return <Redirect to="/"/>
     }
     return (
+        <>
+        <div className="text-center">
+            <h1>Log In To Estator</h1>
+        </div>
         <form onSubmit={submit}>
-            <input type="text" className="form-control" placeholder="Username" required 
-            onChange={e=>setUsername(e.target.value)}
-            />
+            <div className="form-group">
+                <input type="text" className="form-control" placeholder="Username" required 
+                onChange={e=>setUsername(e.target.value)}
+                />
+            </div>
 
-            <input type="password" className="form-control" placeholder="Password" required 
-            onChange={e=>setPassword(e.target.value)}
-            />
+            <div className="form-group">
+                <input type="password" className="form-control" placeholder="Password" required 
+                onChange={e=>setPassword(e.target.value)}
+                />
+            </div>
 
-            <button type="submit" className="btn btn-success">Login</button>
+            <div className="d-grid gap-2 d-md-block">
+                <Button variant="success" block type="submit">
+                    Log In
+                </Button>
+            </div>
+
+            
         </form>
+        </>
+
+        
     )
 }
 

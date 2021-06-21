@@ -74,21 +74,26 @@ export default class Listing extends Component {
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
                         <div className="mt-3">
-                        <Link className="btn btn-primary" to={{
-                            pathname: '/edit_listing',
-                            state: {
-                                lId: post.id, 
-                                lTitle: post.title, 
-                                lDescription :post.description, 
-                                lDatePosted: post.datePosted,
-                                lUserId: post.userId,
-                                lPrice: post.price
-                            }
-                        }}>Edit Listing</Link>
+                            {this.props.isAuthenticated && post.userId == this.props.userid ? 
+                                <>
+                                <Link className="btn btn-primary" to={{
+                                    pathname: '/edit_listing',
+                                    state: {
+                                        lId: post.id, 
+                                        lTitle: post.title, 
+                                        lDescription :post.description, 
+                                        lDatePosted: post.datePosted,
+                                        lUserId: post.userId,
+                                        lPrice: post.price
+                                    }
+                                }}>Edit Listing</Link>
+                                
+                                    <Button variant="danger" onClick={() => this.deleteListing(post.id)}>
+                                        Delete Listing
+                                    </Button>
+                                </>
+                            : ''}
                         
-                            <Button variant="danger" onClick={() => this.deleteListing(post.id)}>
-                                Delete Listing
-                            </Button>
                         </div>
                         </Card.Header>
                     <Card.Body>

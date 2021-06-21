@@ -72,7 +72,7 @@ export default class RegisterForm extends Component {
 
 
                 <Form.Group>
-                    <Button variant="success" type="submit" >
+                    <Button variant="success" type="submit" block>
                         Register
                     </Button>
                 </Form.Group>

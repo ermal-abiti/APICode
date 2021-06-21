@@ -42,13 +42,14 @@ export default class AddBlog extends Component {
                 Description: event.target.Description.value,
                 DatePosted: event.target.DatePosted.value,
                 Price: event.target.Price.value,
-                UserId: event.target.UserId.value
+                UserId: this.props.authenticatedUser
             })
         })
         .then(res=>res.json()).then((result)=>{
             // alert(result);
             // console.log(result);
             this.setState({...this.state, redirect: true})
+            
 
         },
         (error)=>{
@@ -65,6 +66,7 @@ export default class AddBlog extends Component {
         return (
             
             <div>
+                {console.log(this.props.authenticatedUser)}
             <Form onSubmit={this.handlePost}>
                 <Form.Group controlId="Title">
                     <Form.Label>Title</Form.Label>
@@ -86,10 +88,10 @@ export default class AddBlog extends Component {
                             <Form.Control type="date" name="DatePosted" placeholder="" />
                 </Form.Group>
 
-                <Form.Group controlId="UserId">
+                {/* <Form.Group controlId="UserId">
                     <Form.Label>User</Form.Label>
                     <Form.Control type="text" name="UserId" required placeholder=""></Form.Control>
-                </Form.Group>
+                </Form.Group> */}
 
                 <Form.Group>
                     <Button variant="primary" type="submit" >
