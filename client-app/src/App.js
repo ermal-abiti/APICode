@@ -15,10 +15,12 @@ import AddAuction from './components/AddAuction'
 
 
 import RegisterForm from './components/RegisterForm'
+import LoginForm from './components/LoginForm'
 
 
 class App extends Component {
 
+  
   
   render() {
     return (
@@ -42,6 +44,7 @@ class App extends Component {
             <Route path="/auction" component={Auction} exact/>
             <Route path="/add_auction" component={AddAuction} exact/>
             <Route path="/register" component={RegisterForm} exact/>
+            <Route path="/login" component={LoginForm} exact/>
           </Switch>
         </div>
       </BrowserRouter>

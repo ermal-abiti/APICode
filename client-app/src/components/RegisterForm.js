@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 
 
-export default class AddBlog extends Component {
+export default class RegisterForm extends Component {
     constructor(props) {
         super(props);
         this.handlePost = this.handlePost.bind(this);

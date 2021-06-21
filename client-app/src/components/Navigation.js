@@ -1,36 +1,49 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import axios from 'axios';
 
 
-export default class Navigation extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            userLoggedIn: null
-        }
-      }
-  
-    componentDidMount() {
-      fetch('http://localhost:5000/api/loggeduser',{
-        method:'GET',
-        headers:{
-            'Accept':'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+const logout = () => {
+  fetch('http://localhost:5000/api/logout',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+
+        })
+        .then(res=>res.json()).then((result)=>{
+
         },
-        credentials: 'include'
-      })
-            .then((response) =>{
-              this.setState({
-                  ...this.state,
-                userLoggedIn: response.data[0]
-              })
-            })
-    }
-    render() {
-        return (
-            <Navbar bg="primary" expand="lg" variant="dark">
+        (error)=>{
+            alert('Failed')
+        });
+}
+
+function Navigation() {
+
+  
+
+  const [username, setUsername] = useState('')
+        useEffect(()=>{
+            (
+                async() =>{
+                    const response = await fetch('http://localhost:5000/api/loggeduser', {
+                        method:"GET",
+                        headers: {"Content-Type": "application/json"},
+                        credentials: 'include'
+                    })
+
+                    const content = await response.json()
+                    setUsername(content.userName)
+                }
+                
+            )();
+        })
+
+  return (
+    <Navbar bg="primary" expand="lg" variant="dark">
             <Container>
                 <Navbar.Brand href="/">Estator</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -41,18 +54,23 @@ export default class Navigation extends Component {
                     <Nav.Link href="/listing">Listings</Nav.Link>
                     <Nav.Link href="/auction">Auction</Nav.Link>
                     <Nav.Link href="/register">Register</Nav.Link>
-                    <NavDropdown title="User" id="basic-nav-dropdown">
-                        {this.state.userLoggedIn ? <NavDropdown.Item href="#action/3.1">User</NavDropdown.Item> : ''}
-                        {console.log(this.state.userLoggedIn)}
-                        <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-                        <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-                    </NavDropdown>
+                    <Nav.Link href="/login">Login</Nav.Link>
+                    {username ? 
+                      <NavDropdown title={username} id="basic-nav-dropdown">
+                        
+                      <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                      <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                      <NavDropdown.Divider />
+                      <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
+                  </NavDropdown>
+                    : ''}
+                    
                 </Nav>
                 </Navbar.Collapse>
             </Container>
             </Navbar>
-        )
-    }
+  )
 }
+
+export default Navigation
+

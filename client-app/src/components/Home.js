@@ -1,9 +1,26 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import {Carousel} from 'react-bootstrap'
-export default class Home extends Component {
-    render() {
+const Home = () => {
+        const [username, setUsername] = useState('')
+        useEffect(()=>{
+            (
+                async() =>{
+                    const response = await fetch('http://localhost:5000/api/loggeduser', {
+                        method:"GET",
+                        headers: {"Content-Type": "application/json"},
+                        credentials: 'include'
+                    })
+
+                    const content = await response.json()
+                    setUsername(content.userName)
+                }
+                
+            )();
+        })
         return (
             <div className="container">
+                <h1>Logged as: {username ? username : 'You are not logged in!'}</h1>
                 <Carousel variant="dark">
                     <Carousel.Item>
                         <img
@@ -46,5 +63,5 @@ export default class Home extends Component {
 
             </div>
         )
-    }
 }
+export default Home;

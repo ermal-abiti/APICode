@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using API.Dtos;
 using Domain;
 using API.Helpers;
+using Microsoft.AspNetCore.Http;
 
 namespace API.Controllers
 {
