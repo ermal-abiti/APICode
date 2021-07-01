@@ -81,7 +81,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={Home} exact/>
           <Route path="/blog" isAuthenticated={isAuthenticated} component={Blog} exact/>
-          <Route path="/add_blog" isAuthenticated={isAuthenticated} component={AddBlog} exact/>
+          <Route path="/add_blog" isAuthenticated={isAuthenticated} authenticatedUser={userid} component={AddBlog} exact/>
           <Route path="/edit_blog" isAuthenticated={isAuthenticated} component={EditBlog} exact/>
           {console.log(Cookies.get('jwt'))}
           {/* <PrivateRoute isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/> */}
@@ -89,7 +89,7 @@ const App = () => {
           <Route isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
           
           <Route path="/add_listing" isAuthenticated={isAuthenticated} component={()=> <AddListing authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
-          <Route path="/edit_listing" isAuthenticated={isAuthenticated} component={EditListing} exact/>
+          <Route path="/edit_listing" isAuthenticated={isAuthenticated} authenticatedUser={userid} component={EditListing} exact/>
 
           <Route path="/auction" isAuthenticated={isAuthenticated} component={Auction} exact/>
           <Route path="/add_auction" component={AddAuction} exact/>

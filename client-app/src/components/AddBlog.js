@@ -41,7 +41,7 @@ export default class AddBlog extends Component {
                 Title: event.target.Title.value,
                 Content: event.target.Content.value,
                 DatePosted: event.target.DatePosted.value,
-                UserId: event.target.UserId.value
+                UserId: this.props.authenticatedUser
             })
         })
         .then(res=>res.json()).then((result)=>{
@@ -80,10 +80,7 @@ export default class AddBlog extends Component {
                             <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" />
                 </Form.Group>
 
-                <Form.Group controlId="UserId">
-                    <Form.Label>User</Form.Label>
-                    <Form.Control type="text" name="UserId" required placeholder=""></Form.Control>
-                </Form.Group>
+                
 
                 {/* <Form.Group controlId="UserId">
                 <Form.Label>My multiselect</Form.Label>
