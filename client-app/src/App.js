@@ -7,7 +7,6 @@ import EditBlog from './components/EditBlog'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PublicRoute from './components/Routes/PublicRoute'
 import PrivateRoute from './components/Routes/PrivateRoute'
-import Cookies from 'js-cookie'
 import axios from "axios";
 
 
@@ -80,10 +79,9 @@ const App = () => {
       <div className="container mt-3">
         <Switch>
           <Route path="/" component={Home} exact/>
-          <Route path="/blog" isAuthenticated={isAuthenticated} component={Blog} exact/>
-          <Route path="/add_blog" isAuthenticated={isAuthenticated} authenticatedUser={userid} component={AddBlog} exact/>
+          <Route path="/blog" isAuthenticated={isAuthenticated} component={() => <Blog  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
+          <Route path="/add_blog" isAuthenticated={isAuthenticated} component={()=> <AddBlog authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
           <Route path="/edit_blog" isAuthenticated={isAuthenticated} component={EditBlog} exact/>
-          {console.log(Cookies.get('jwt'))}
           {/* <PrivateRoute isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/> */}
           {/* <Route path="/listing" component={Listing} exact/> */}
           <Route isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>

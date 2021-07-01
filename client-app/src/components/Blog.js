@@ -91,6 +91,8 @@ export default class Blog extends Component {
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
                         <div className="mt-3">
+                        {this.props.isAuthenticated && post.userId == this.props.userid ? 
+                        <>
                         <Link className="btn btn-primary" to={{
                             pathname: '/edit_blog',
                             state: {
@@ -105,6 +107,8 @@ export default class Blog extends Component {
                             <Button variant="danger" onClick={() => this.deletePost(post.id)}>
                                 Delete Post
                             </Button>
+                            </>
+                        : ''}
                         </div>
                         </Card.Header>
                     <Card.Body>

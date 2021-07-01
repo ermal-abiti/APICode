@@ -92,10 +92,6 @@ export default class EditBlog extends Component {
                             <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" defaultValue={state.bDatePosted} />
                 </Form.Group>
 
-                <Form.Group controlId="UserId">
-                    <Form.Label>User</Form.Label>
-                    <Form.Control type="text" name="UserId" required placeholder="" defaultValue={state.bUserId}></Form.Control>
-                </Form.Group>
 
                 {/* <Form.Group controlId="UserId">
                 <Form.Label>My multiselect</Form.Label>
