@@ -80,10 +80,9 @@ export default class Blog extends Component {
 
         const { posts, bId, bTitle, bContent, bDatePosted, bUserId } = this.state
         return (
+            this.props.isAuthenticated ?
             
-            <div className="">
-                
-
+            <div>                
                 <div className="text-center"><a className="btn btn-primary" href="/add_blog">Add Post</a></div>
                 {posts.map(post => (
                     
@@ -127,6 +126,9 @@ export default class Blog extends Component {
                     </Card>
                 )).reverse()}
             </div>
+
+            :
+            <div className="alert alert-danger">You are not authenticated</div>
         )
     }
 }

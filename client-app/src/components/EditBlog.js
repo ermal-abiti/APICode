@@ -73,7 +73,7 @@ export default class EditBlog extends Component {
             
             <div>
             <Form onSubmit={this.handlePost}>
-                <Form.Group controlId="Id">
+                <Form.Group controlId="Id" hidden>
                     <Form.Label>Id</Form.Label>
                     <Form.Control type="text" name="Id" required disabled defaultValue={state.bId}></Form.Control>
                 </Form.Group>
@@ -92,6 +92,10 @@ export default class EditBlog extends Component {
                             <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" defaultValue={state.bDatePosted} />
                 </Form.Group>
 
+                <Form.Group controlId="UserId" hidden>
+                    <Form.Label>User</Form.Label>
+                    <Form.Control type="text" name="UserId" required placeholder="" defaultValue={state.bUserId}></Form.Control>
+                </Form.Group>
 
                 {/* <Form.Group controlId="UserId">
                 <Form.Label>My multiselect</Form.Label>
@@ -114,6 +118,7 @@ export default class EditBlog extends Component {
                 </Form.Group>
             </Form>  
             </div>
+            
         )
     }
 }
