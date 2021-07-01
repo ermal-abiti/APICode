@@ -21,7 +21,7 @@ const logout = () => {
         });
 }
 
-function Navigation() {
+function Navigation(props) {
 
   
 
@@ -49,19 +49,28 @@ function Navigation() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/">Home</Nav.Link>
-                    <Nav.Link href="/blog">Blog</Nav.Link>
-                    <Nav.Link href="/listing">Listings</Nav.Link>
-                    <Nav.Link href="/auction">Auction</Nav.Link>
-                    <Nav.Link href="/register">Register</Nav.Link>
-                    <Nav.Link href="/login">Login</Nav.Link>
+                    {username ? 
+                        <>
+                        <Nav.Link href="/">Home</Nav.Link>
+                        <Nav.Link href="/blog">Blog</Nav.Link>
+                        <Nav.Link href="/listing">Listings</Nav.Link>
+                        <Nav.Link href="/auction">Auction</Nav.Link>
+                        </>
+                    : 
+                        <>
+                        <Nav.Link href="/register">Register</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
+                        </>
+                    }
+                    
+                    
                     {username ? 
                       <NavDropdown title={username} id="basic-nav-dropdown">
                         
                       <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                       <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                       <NavDropdown.Divider />
-                      <NavDropdown.Item onClick={logout} className="text-danger">Logout</NavDropdown.Item>
+                      <NavDropdown.Item onClick={props.logout} className="text-danger">Logout</NavDropdown.Item>
                   </NavDropdown>
                     : ''}
                     

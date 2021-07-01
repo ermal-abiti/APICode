@@ -62,11 +62,13 @@ export default class Listing extends Component {
     render() {
 
         const { listings, lId, lTitle, lDescription, lDatePosted, lUserId, lPrice }= this.state
+        const isAuthenticated = this.props.isAuthenticated
+        {console.log(isAuthenticated)}
+
         return (
-            
+            isAuthenticated ? 
             <div className="">
                 
-
                 <div className="text-center"><a className="btn btn-primary" href="/add_listing">Add Listing</a></div>
                 {listings.map(post => (
                     
@@ -109,6 +111,8 @@ export default class Listing extends Component {
                     </Card>
                 )).reverse()}
             </div>
+            :
+        <div className="alert alert-danger">You are not logged in</div>
         )
     }
 }

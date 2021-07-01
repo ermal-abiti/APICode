@@ -1,11 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router';
 import { Button } from "react-bootstrap";
 
-const LoginForm = () => {
+const LoginForm = ({isAuthenticated}) => {
     const[username, setUsername] = useState('');
     const[password, setPassword] = useState('');
     const[redirect, setRedirect] = useState(false);
+    const[isAuth, setIsAuth] = useState(false);
 
     const submit = (e) => {
         e.preventDefault();
@@ -23,10 +24,18 @@ const LoginForm = () => {
         setRedirect(true);
     }
 
+
+
+    
+
     if (redirect) {
         return <Redirect to="/"/>
     }
+    // console.log(isAuth())
     return (
+        isAuthenticated ?
+        <div>s</div>
+        :
         <>
         <div className="text-center">
             <h1>Log In To Estator</h1>
@@ -59,3 +68,4 @@ const LoginForm = () => {
 }
 
 export default LoginForm
+

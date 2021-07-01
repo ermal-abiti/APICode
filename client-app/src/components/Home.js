@@ -20,7 +20,6 @@ const Home = () => {
         })
         return (
             <div className="container">
-                <h1>Logged as: {username ? username : 'You are not logged in!'}</h1>
                 <Carousel variant="dark">
                     <Carousel.Item>
                         <img

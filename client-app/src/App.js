@@ -5,7 +5,12 @@ import Home from './components/Home'
 import AddBlog from './components/AddBlog'
 import EditBlog from './components/EditBlog'
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PublicRoute from './components/Routes/PublicRoute'
+import PrivateRoute from './components/Routes/PrivateRoute'
+import Cookies from 'js-cookie'
 import axios from "axios";
+
+
 import Listing from  './components/Listing'
 import AddListing from './components/AddListing'
 import EditListing from './components/EditListing'
@@ -19,6 +24,22 @@ import LoginForm from './components/LoginForm'
 
 
 
+const logout = () => {
+  fetch('http://localhost:5000/api/logout',{
+            method:'POST',
+            headers:{
+                'Accept':'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
+
+        })
+        .then(res=>res.json()).then((result)=>{
+        },
+        (error)=>{
+            alert('Failed')
+        });
+}
 
 const App = () => {
 
@@ -44,28 +65,36 @@ const App = () => {
       )();
   })
 
+  function isAuth() {
+    return isAuthenticated
+  }
+
+
   return (
     <BrowserRouter>
 
-      <Navigation/>
+      <Navigation logout={logout}/>
 
+      {console.log(isAuth())}
 
       <div className="container mt-3">
         <Switch>
           <Route path="/" component={Home} exact/>
+          <Route path="/blog" isAuthenticated={isAuthenticated} component={Blog} exact/>
+          <Route path="/add_blog" isAuthenticated={isAuthenticated} component={AddBlog} exact/>
+          <Route path="/edit_blog" isAuthenticated={isAuthenticated} component={EditBlog} exact/>
+          {console.log(Cookies.get('jwt'))}
+          {/* <PrivateRoute isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/> */}
+          {/* <Route path="/listing" component={Listing} exact/> */}
+          <Route isAuthenticated={isAuthenticated} path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
+          
+          <Route path="/add_listing" isAuthenticated={isAuthenticated} component={()=> <AddListing authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
+          <Route path="/edit_listing" isAuthenticated={isAuthenticated} component={EditListing} exact/>
 
-          <Route path="/blog" component={Blog} exact/>
-          <Route path="/add_blog" component={AddBlog} exact/>
-          <Route path="/edit_blog" component={EditBlog} exact/>
-
-          <Route path="/listing" component={() => <Listing  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
-          <Route path="/add_listing" component={()=> <AddListing authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
-          <Route path="/edit_listing" component={EditListing} exact/>
-
-          <Route path="/auction" component={Auction} exact/>
+          <Route path="/auction" isAuthenticated={isAuthenticated} component={Auction} exact/>
           <Route path="/add_auction" component={AddAuction} exact/>
-          <Route path="/register" component={RegisterForm} exact/>
-          <Route path="/login" component={LoginForm} exact/>
+          <Route path="/register" isAuthenticated={isAuthenticated} component={RegisterForm} exact/>
+          <Route isAuthenticated={isAuthenticated} path="/login" component={LoginForm} exact/>
         </Switch>
       </div>
     </BrowserRouter>
