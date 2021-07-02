@@ -88,7 +88,7 @@ export default class Blog extends Component {
                     
                     <Card  key={post.id} className="mt-3 mb-3 ">
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
+                    <Card.Header>{this.getUser(post.userId)} - {`${post.datePosted.split("T")[0]} ${post.datePosted.split("T")[1].slice(0,5)}`}
                         <div className="mt-3">
                         {this.props.isAuthenticated && post.userId == this.props.userid ? 
                         <>
