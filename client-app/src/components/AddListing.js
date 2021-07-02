@@ -64,7 +64,7 @@ export default class AddBlog extends Component {
         }
 
         return (
-            
+            this.props.isAuthenticated ?
             <div>
                 {console.log(this.props.authenticatedUser)}
             <Form onSubmit={this.handlePost}>
@@ -100,6 +100,8 @@ export default class AddBlog extends Component {
                 </Form.Group>
             </Form>  
             </div>
+            :
+            <div>You are not authenticated. <a href="/login">Login</a> to view this content</div>
         )
     }
 }

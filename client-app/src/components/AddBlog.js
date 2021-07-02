@@ -62,7 +62,7 @@ export default class AddBlog extends Component {
         }
 
         return (
-            
+            this.props.isAuthenticated ?
             <div>
             <Form onSubmit={this.handlePost}>
                 <Form.Group controlId="Title">
@@ -80,21 +80,6 @@ export default class AddBlog extends Component {
                             <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" />
                 </Form.Group>
 
-                
-
-                {/* <Form.Group controlId="UserId">
-                <Form.Label>My multiselect</Form.Label>
-                <Form.Control as="select" custom value={this.state.users}>
-                    {this.state.users.map(user => (
-                        <option value={user.id} key={user.id}>{user.username}</option>
-                    ))}
-                </Form.Control>
-                </Form.Group> */}
-
-                {/* <DropdownMultiselect
-                    options={["Australia", "Canada", "USA", "Poland", "Spain", "France"]}
-                    name="countries"
-                /> */}
 
                 <Form.Group>
                     <Button variant="primary" type="submit" >
@@ -103,6 +88,8 @@ export default class AddBlog extends Component {
                 </Form.Group>
             </Form>  
             </div>
+            :
+            <div>You are not authenticated. <a href="/login">Login</a> to view this content</div>
         )
     }
 }
