@@ -27,6 +27,8 @@ namespace API.Controllers
                 Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
                 UserRoleId = dto.UserRoleId
             };
+
+            
             
             return Created("success", _repository.Create(user));
         }

@@ -29,7 +29,7 @@ export default class PostComment extends Component {
     }
 
     getUser(id) {
-        return (this.state.users.filter(user => user.id === id).map(user => <b key={user.id}>{user.username}</b>))
+        return (this.state.users.filter(user => user.id === id).map(user => <b key={user.id}>{user.userName}</b>))
     }
 
     render() {

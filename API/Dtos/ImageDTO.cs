@@ -1,11 +1,11 @@
  
- namespace API.Dtos
-{
+//  namespace API.Dtos
+// {
  
- public class ImageDTO
-    {
-        public string FileName { get; set; }
+//  public class ImageDTO
+//     {
+//         public string FileName { get; set; }
 
-        public IFormFile Image { get; set; }
-    }
-}
+//         public IFormFile Image { get; set; }
+//     }
+// }

@@ -36,22 +36,6 @@ export default class Blog extends Component {
         })
     }
 
-    // componentDidUpdate(){
-    //     axios.get('http://localhost:5000/api/blogpost')
-    //       .then((response) =>{
-    //         this.setState({
-    //           posts: response.data
-    //         })
-    //       })
-        
-    //     axios.get('http://localhost:5000/api/user')
-    //     .then ((response) =>{
-    //         this.setState({
-    //             users: response.data
-    //         })
-    //     })
-    // }
-
     getUser(id) {
          return (this.state.users.filter(user => user.id === id).map(user => <b key={user.id}>{user.userName}</b>))
     }
@@ -86,7 +70,7 @@ export default class Blog extends Component {
                 <div className="text-center"><a className="btn btn-primary" href="/add_blog">Add Post</a></div>
                 {posts.map(post => (
                     
-                    <Card  key={post.id} className="mt-3 mb-3 ">
+                    <Card  key={post.id} className="mt-3 mb-3" >
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Header>{this.getUser(post.userId)} - {`${post.datePosted.split("T")[0]} ${post.datePosted.split("T")[1].slice(0,5)}`}
                         <div className="mt-3">
@@ -120,11 +104,13 @@ export default class Blog extends Component {
                         {/* <Button variant="primary">Edit Post</Button> */}
                     </Card.Body>
                     <Card.Footer>
-                        <PostComment postId={post.id}/>
-                        <PostCommentForm blogPostId={post.id} />
+                        <PostComment postId={post.id} key={post.id} />
+                        <PostCommentForm blogPostId={post.id} authenticatedUser={this.props.userid} />
                     </Card.Footer>
                     </Card>
+                    
                 )).reverse()}
+                
             </div>
 
             :
