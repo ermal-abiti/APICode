@@ -27,6 +27,8 @@ namespace Domain
 
         public List<PostComment> PostComments { get; set; }
 
+        public List<ListingRating> ListingRatings { get; set; }
+
    }
 
 }

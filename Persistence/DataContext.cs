@@ -30,5 +30,7 @@ namespace Persistence
         public DbSet<PostComment> PostComments { get;set; }
         public DbSet<Auction> Auctions { get;set; }
         public DbSet<ListingComment> ListingComments { get;set; }
+        public DbSet<ListingRating> ListingRatings { get; set; }
+
     }
 }
