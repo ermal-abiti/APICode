@@ -22,8 +22,6 @@ namespace Domain
         public List<Auction> Auctions { get; set; }
 
         public List<ListingComment> ListingComments { get; set; }
-        
-        
-              
+            
     }
 }
