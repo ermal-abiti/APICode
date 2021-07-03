@@ -12,6 +12,21 @@ export default class PostCommentForm extends Component {
         comments:[]
     }
 
+    getdate() {
+        var today = new Date()
+        var year = today.getFullYear()
+        var month = today.getMonth()
+        var day = today.getDate()
+        var time = today.getTime()
+        if (month < 10) {
+            month = `0${month}`
+        }
+        if (day < 10) {
+            day = `0${day}`
+        }
+        return `${year}-${month}-${day}`
+    }
+    
     handlePost(event) {
         event.preventDefault();
         fetch('http://localhost:5000/api/postcomment',{
@@ -24,7 +39,7 @@ export default class PostCommentForm extends Component {
                 Content: event.target.Content.value,
                 DatePosted: event.target.DatePosted.value,
                 BlogPostId: this.props.blogPostId,
-                UserId: event.target.UserId.value
+                UserId: this.props.authenticatedUser
             })
         })
         .then(res=>res.json()).then((result)=>{
@@ -38,8 +53,9 @@ export default class PostCommentForm extends Component {
         });
     }
 
-
+    
     render() {
+        console.log(this.getdate())
         return (
             <Form onSubmit={this.handlePost}>
                 <Form.Group controlId="Content">
@@ -47,16 +63,12 @@ export default class PostCommentForm extends Component {
                     <Form.Control as="textarea" type="text" name="Content" required  placeholder="Comment on this post..."></Form.Control>
                 </Form.Group>
 
-                <Form.Group controlId="DatePosted">
+                <Form.Group controlId="DatePosted" hidden>
                     <Form.Label>Select Date</Form.Label>
-                    <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" />
+                    <Form.Control type="date" name="DatePosted" placeholder="Date of Birth" defaultValue={this.getdate()} />
                 </Form.Group>
                 
 
-                <Form.Group controlId="UserId">
-                    <Form.Label>User</Form.Label>
-                    <Form.Control type="text" name="UserId" required placeholder=""></Form.Control>
-                </Form.Group>
 
                 
 

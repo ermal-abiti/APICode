@@ -29,6 +29,21 @@ export default class AddBlog extends Component {
         })
     }
 
+    getdate() {
+        var today = new Date()
+        var year = today.getFullYear()
+        var month = today.getMonth()
+        var day = today.getDate()
+        var time = today.getTime()
+        if (month < 10) {
+            month = `0${month}`
+        }
+        if (day < 10) {
+            day = `0${day}`
+        }
+        return `${year}-${month}-${day}`
+    }
+
     handlePost(event) {
         event.preventDefault();
         fetch('http://localhost:5000/api/listing',{
@@ -83,9 +98,9 @@ export default class AddBlog extends Component {
                             <Form.Control type="text" name="Price" placeholder="" />
                 </Form.Group>
 
-                <Form.Group controlId="DatePosted">
+                <Form.Group controlId="DatePosted" hidden>
                             <Form.Label>Select Date</Form.Label>
-                            <Form.Control type="date" name="DatePosted" placeholder="" />
+                            <Form.Control type="date" name="DatePosted" placeholder="" defaultValue={this.getdate()}/>
                 </Form.Group>
 
                 {/* <Form.Group controlId="UserId">
