@@ -63,9 +63,7 @@ export default class Blog extends Component {
         const { auctions, aId, aTitle, aDeadline, aStartingPrice, aListingId } = this.state
         return (
             
-            <div className="">
-                
-
+            <div>
                 <div className="text-center"><a className="btn btn-primary" href="/add_auction">Add Auction</a></div>
                 {auctions.map(post => (
                     

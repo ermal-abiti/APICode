@@ -63,20 +63,19 @@ export default class Listing extends Component {
 
         const { listings, lId, lTitle, lDescription, lDatePosted, lUserId, lPrice }= this.state
         const isAuthenticated = this.props.isAuthenticated
-        {console.log(isAuthenticated)}
 
         return (
             isAuthenticated ? 
-            <div className="">
-                
+
+            <div>
                 <div className="text-center"><a className="btn btn-primary" href="/add_listing">Add Listing</a></div>
                 {listings.map(post => (
                     
                     <Card  key={post.id} className="mt-3 mb-3 ">
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
-                    <Card.Header>{this.getUser(post.userId)} - {post.datePosted}
+                    <Card.Header>{this.getUser(post.userId)} - {`${post.datePosted.split("T")[0]} ${post.datePosted.split("T")[1].slice(0,5)}`}
                         <div className="mt-3">
-                            {this.props.isAuthenticated && post.userId == this.props.userid ? 
+                            {this.props.isAuthenticated && post.userId === this.props.userid ? 
                                 <>
                                 <Link className="btn btn-primary" to={{
                                     pathname: '/edit_listing',
