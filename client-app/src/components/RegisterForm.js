@@ -3,23 +3,26 @@ import { Form, Button } from 'react-bootstrap'
 import axios from 'axios'
 //import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 import { Redirect } from 'react-router-dom';
+import FooterComponent from './FooterComponent';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 
-export default class RegisterForm extends Component {
-    constructor(props) {
-        super(props);
-        this.handlePost = this.handlePost.bind(this);
-    }
-    state = {
+const RegisterForm = () => {
+    const state = {
         redirect: false,
     }
 
-    onChangeColor(event) {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const onChangeColor = (event) => {
         return event.target.selected;
     }
 
-    handlePost(event) {
+    const handlePost = (event) => {
         event.preventDefault();
         fetch('http://localhost:5000/api/register',{
             method:'POST',
@@ -45,39 +48,40 @@ export default class RegisterForm extends Component {
         });
     }
     
-    render() {
-        if (this.state.redirect) {
-            return <Redirect to='/'/>;
-            
-        }
+    // if (this.state.redirect) {
+    //     return <Redirect to='/'/>;
+        
+    // }
 
-        return (
-            
-            <div>
-            <Form onSubmit={this.handlePost}>
-                <Form.Group controlId="UserName">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control type="text" name="UserName" required ></Form.Control>
-                </Form.Group>
+    return (
+        <>
+            <div className="form">
+                <div className="text-center">
+                    <h1>REGISTER</h1>
+                </div>
+                
+                <form>
+                    <input type="text" className="input" placeholder="Username" required />
 
-                <Form.Group controlId="Email">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control type="text" name="Email" required ></Form.Control>
-                </Form.Group>
+                    <input type="email" className="input" placeholder="Email" required />
 
-                <Form.Group controlId="Password">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control type="password" name="Password" required></Form.Control>
-                </Form.Group>
+                    <input type="password" className="input" placeholder="Password" required />
 
+                    <Link to="/login" className="forgot">Got an account?</Link>
 
-                <Form.Group>
-                    <Button variant="success" type="submit" block>
-                        Register
-                    </Button>
-                </Form.Group>
-            </Form>  
+                    <div className="d-grid gap-2 d-md-block">
+                        <Button variant="success" block type="submit">
+                            Sign up
+                        </Button>
+                    </div>
+
+                    
+                </form>
             </div>
-        )
-    }
+
+            <FooterComponent pos="absolute" />
+        </>
+    )
 }
+
+export default RegisterForm;

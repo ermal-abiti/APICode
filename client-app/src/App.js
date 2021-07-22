@@ -22,6 +22,7 @@ import AddAuction from './components/AddAuction'
 
 import RegisterForm from './components/RegisterForm'
 import LoginForm from './components/LoginForm'
+import FooterComponent from "./components/FooterComponent";
 
 
 
@@ -78,7 +79,7 @@ const App = () => {
 
       {console.log(isAuth())}
 
-      <div className="container mt-3">
+      <div>
         <Switch>
           <Route path="/" component={Home} exact/>
           <Route path="/blog" isAuthenticated={isAuthenticated} component={() => <Blog  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>

@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { Redirect } from 'react-router';
 import { Button } from "react-bootstrap";
+import FooterComponent from './FooterComponent';
+import { Link } from 'react-router-dom';
 
 const LoginForm = ({isAuthenticated}) => {
     const[username, setUsername] = useState('');
@@ -36,34 +38,35 @@ const LoginForm = ({isAuthenticated}) => {
         isAuthenticated ?
         <div>s</div>
         :
-        <div className="form">
-        <div className="text-center">
-            <h1>LOG IN</h1>
-        </div>
-        <form onSubmit={submit}>
-            <div className="inputs">
-                <input type="text" className="input" placeholder="Username" required 
-                onChange={e=>setUsername(e.target.value)}
-                />
+        <>
+            <div className="form">
+                <div className="text-center">
+                    <h1>LOG IN</h1>
+                </div>
+                
+                <form onSubmit={submit}>
+                    <input type="text" className="input" placeholder="Username" required 
+                    onChange={e=>setUsername(e.target.value)}
+                    />
+
+                    <input type="password" className="input" placeholder="Password" required 
+                    onChange={e=>setPassword(e.target.value)}
+                    />
+
+                    <Link to="/register" className="forgot">Forgot password?</Link>
+
+                    <div className="d-grid gap-2 d-md-block">
+                        <Button variant="success" block type="submit">
+                            Log In
+                        </Button>
+                    </div>
+
+                    
+                </form>
             </div>
 
-            <div className="form-group">
-                <input type="password" className="input" placeholder="Password" required 
-                onChange={e=>setPassword(e.target.value)}
-                />
-            </div>
-
-            <a href="#" className="forgot">Forgot password?</a>
-
-            <div className="d-grid gap-2 d-md-block">
-                <Button variant="success" block type="submit">
-                    Log In
-                </Button>
-            </div>
-
-            
-        </form>
-        </div>
+            <FooterComponent pos="absolute" />
+        </>
 
         
     )
