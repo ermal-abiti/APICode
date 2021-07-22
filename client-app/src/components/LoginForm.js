@@ -36,22 +36,24 @@ const LoginForm = ({isAuthenticated}) => {
         isAuthenticated ?
         <div>s</div>
         :
-        <>
+        <div className="form">
         <div className="text-center">
-            <h1>Log In To Estator</h1>
+            <h1>LOG IN</h1>
         </div>
         <form onSubmit={submit}>
-            <div className="form-group">
-                <input type="text" className="form-control" placeholder="Username" required 
+            <div className="inputs">
+                <input type="text" className="input" placeholder="Username" required 
                 onChange={e=>setUsername(e.target.value)}
                 />
             </div>
 
             <div className="form-group">
-                <input type="password" className="form-control" placeholder="Password" required 
+                <input type="password" className="input" placeholder="Password" required 
                 onChange={e=>setPassword(e.target.value)}
                 />
             </div>
+
+            <a href="#" className="forgot">Forgot password?</a>
 
             <div className="d-grid gap-2 d-md-block">
                 <Button variant="success" block type="submit">
@@ -61,7 +63,7 @@ const LoginForm = ({isAuthenticated}) => {
 
             
         </form>
-        </>
+        </div>
 
         
     )

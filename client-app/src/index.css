@@ -11,3 +11,63 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+nav {
+  background-color: #5482C7 !important;
+}
+
+.form {
+  background-color: #5482C7;
+  padding: 60px 40px;
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 60%;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.form h1 {
+  color: white;
+  margin-bottom: 40px;
+}
+
+.form .input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.form input:focus {
+  outline: none;
+}
+
+.form .forgot {
+  color: white;
+}
+
+.form button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 200px;
+}
+
+.form button:hover {
+  border: 2px solid white;
+}
+
+@media screen and (max-width: 990px) {
+  .form {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .form {
+    width: 80%;
+    padding: 60px 30px;
+  }
+}
