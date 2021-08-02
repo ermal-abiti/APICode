@@ -4,6 +4,8 @@ import axios from 'axios'
 //import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 import { Redirect } from 'react-router-dom';
 
+import path from 'path';
+
 
 
 export default class AddBlog extends Component {
@@ -57,20 +59,19 @@ export default class AddBlog extends Component {
                 Description: event.target.Description.value,
                 DatePosted: event.target.DatePosted.value,
                 Price: event.target.Price.value,
-                UserId: this.props.authenticatedUser
+                UserId: this.props.authenticatedUser,
             })
         })
         .then(res=>res.json()).then((result)=>{
             // alert(result);
             // console.log(result);
             this.setState({...this.state, redirect: true})
-            
-
         },
         (error)=>{
             alert('Failed')
         });
     }
+
     
     render() {
         if (this.state.redirect) {
@@ -97,7 +98,7 @@ export default class AddBlog extends Component {
                             <Form.Label>Price</Form.Label>
                             <Form.Control type="text" name="Price" placeholder="" />
                 </Form.Group>
-
+                
                 <Form.Group controlId="DatePosted" hidden>
                             <Form.Label>Select Date</Form.Label>
                             <Form.Control type="date" name="DatePosted" placeholder="" defaultValue={this.getdate()}/>

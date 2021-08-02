@@ -9,7 +9,7 @@ import PublicRoute from './components/Routes/PublicRoute'
 import PrivateRoute from './components/Routes/PrivateRoute'
 import axios from "axios";
 import AddOfers from './components/AddOfers'
-import Ofers from './components/Ofers'
+import About from './components/About'
 
 import Listing from  './components/Listing'
 import AddListing from './components/AddListing'
@@ -83,7 +83,7 @@ const App = () => {
         <Switch>
           <Route path="/" component={Home} exact/>
           <Route path="/blog" isAuthenticated={isAuthenticated} component={() => <Blog  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
-          <Route path="/ofers" isAuthenticated={isAuthenticated} component={() => <Ofers  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
+          <Route path="/about" isAuthenticated={isAuthenticated} component={() => <About  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
           <Route path="/add_ofers" isAuthenticated={isAuthenticated} component={()=> <AddOfers authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
           <Route path="/add_blog" isAuthenticated={isAuthenticated} component={()=> <AddBlog authenticatedUser={userid} isAuthenticated={isAuthenticated} />} exact/>
           <Route path="/edit_blog" isAuthenticated={isAuthenticated} component={EditBlog} exact/>
