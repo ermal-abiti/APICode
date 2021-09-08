@@ -15,9 +15,7 @@ export default class Blog extends Component {
             users: [],
         }
     }
-    
-    
-
+   
     componentDidMount() {
         axios.get('http://localhost:5000/api/blogpost')
           .then((response) =>{
