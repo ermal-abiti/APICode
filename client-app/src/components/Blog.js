@@ -72,7 +72,7 @@ export default class Blog extends Component {
                     {/* <Card.Img variant="top" src="holder.js/100px180" /> */}
                     <Card.Header>{this.getUser(post.userId)} - {`${post.datePosted.split("T")[0]} ${post.datePosted.split("T")[1].slice(0,5)}`}
                         <div className="mt-3">
-                        {this.props.isAuthenticated && post.userId == this.props.userid ? 
+                        {this.props.isAuthenticated && post.userId === this.props.userid ? 
                         <>
                         <Link className="btn btn-primary" to={{
                             pathname: '/edit_blog',

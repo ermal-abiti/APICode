@@ -1,7 +1,7 @@
 const TeamMember = ({name, position, github, instagram, linkedin, twitter, align}) => {
 
     return (
-        <div className={`member ${align == 'right' ? 'right' : ''}`}>
+        <div className={`member ${align === 'right' ? 'right' : ''}`}>
             <i class="far fa-user-circle"></i>
 
             <div className="info">

@@ -32,9 +32,9 @@ const FooterComponent = ({pos}) => {
             <div className="right">
                 <h2>Follow us</h2>
                 <div className="icons">
-                <i class="fab fa-facebook"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-twitter"></i>
+                <i className="fab fa-facebook"></i>
+                <i className="fab fa-instagram"></i>
+                <i className="fab fa-twitter"></i>
                 </div>
             </div>
         </footer>
