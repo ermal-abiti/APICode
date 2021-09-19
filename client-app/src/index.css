@@ -29,93 +29,6 @@ nav {
   text-shadow: 0 0 10px black;
 }
 
-/* ------------- About page ------------- */
-
-.about-main {
-  padding: 50px 0;
-  background-color: var(--blue);
-  text-align: center;
-}
-
-.about-main i {
-  font-size: 300px;
-  color: white;
-}
-
-.about-main h1 {
-  font-size: 50px;
-  color: white;
-  margin-top: 60px;
-}
-
-.team {
-  margin-bottom: 50px;
-}
-
-.team h3 {
-  text-align: center;
-  margin: 40px 0 30px 0;
-}
-
-.member {
-  padding: 40px 15%;
-  border: 1px solid #dbdbdb;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 40px 0;
-}
-
-.member i {
-  font-size: 125px;
-}
-
-
-.member .info {
-  text-align: center;
-}
-
-.socials {
-  display: flex;
-  justify-content: space-between;
-  width: 150px;
-  margin: 0 auto;
-}
-
-.socials i {
-  font-size: 30px;
-  transition: 300ms;
-  cursor: pointer;
-}
-
-.socials i:hover {
-  color: var(--blue);
-}
-
-.member.right {
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-
-.member.right .info  {
-  order: 1;
-}
-
-.member.right .info h2 {
-  color: black;
-}
-
-.member.right i {
-  order: 2;
-}
-
-.location {
-  padding: 30px 50px;
-  background-color: var(--blue);
-}
-
 /* ------------- Login page ------------- */
 
 .form {
@@ -271,7 +184,7 @@ footer {
   footer {
     flex-direction: column;
     position: relative !important;
-    margin-top: 20vh;
+    margin-top: 50vh;
     bottom: 0;
   }
   .left, .center, .right {
@@ -297,15 +210,5 @@ footer {
   .form {
     width: 80%;
     padding: 60px 30px;
-  }
-  .member {
-    flex-direction: column !important;
-  }
-  .member i {
-    order: 0 !important;
-    margin-bottom: 20px;
-  }
-  .member info {
-    order: 1 !important;
   }
 }
