@@ -6,33 +6,14 @@ import ListingComment from './ListingComment'
 
 
 export default class Listing extends Component {
-    constructor(props) {
-        super(props);
-        //this.deletePost = this.deletePost.bind(this);
-        this.state = {
-            listings: [],
-            users: [],
-        }
+    state = {
+        listings: [],
+        users: [],
     }
-    
     
 
     componentDidMount() {
-        axios.get('http://localhost:5000/api/listing')
-          .then((response) =>{
-            this.setState({
-                ...this.state,
-              listings: response.data
-            })
-          })
         
-        axios.get('http://localhost:5000/api/user')
-        .then ((response) =>{
-            this.setState({
-                ...this.state,
-                users: response.data
-            })
-        })
     }
 
     getUser(id) {
@@ -67,7 +48,8 @@ export default class Listing extends Component {
         return (
             isAuthenticated ? 
 
-            <div>
+            <div className="container">
+                <br/>
                 <div className="text-center"><a className="btn btn-primary" href="/add_listing">Add Listing</a></div>
                 {listings.map(post => (
                     

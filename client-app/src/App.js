@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import React, { useEffect, useState } from "react";
 import Navigation from "./components/Navigation";
 import Blog from './components/Blog'
@@ -19,67 +20,64 @@ import Auction from './components/Auction'
 import AddAuction from './components/AddAuction'
 
 
+=======
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import axios from 'axios'
+>>>>>>> Stashed changes
 
-import RegisterForm from './components/RegisterForm'
-import LoginForm from './components/LoginForm'
-import FooterComponent from "./components/FooterComponent";
+import NavBar from './components/NavBar';
+import Home from './components/Home'
+import './index.css'
 
-
-
-const logout = () => {
-  fetch('http://localhost:5000/api/logout',{
-            method:'POST',
-            headers:{
-                'Accept':'application/json',
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-
-        })
-        .then(res=>res.json()).then((result)=>{
-        },
-        (error)=>{
-            alert('Failed')
-        });
-}
+import Listing from './components/cruds/Listing';
+import AddListing from './components/cruds/AddListing';
+import UpdateListing from './components/cruds/UpdateListing';
 
 const App = () => {
 
-  const [username, setUsername] = useState('')
-  const [userid, setUserid] = useState(0)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [users, setUsers] = useState([])
+  const [listings, setListings] = useState([])
+  const [listing, setListing] = useState({})
+  const [redirect, setRedirect] = useState(false)
 
-  useEffect(()=>{
-      (
-          async() =>{
-              const response = await fetch('http://localhost:5000/api/loggeduser', {
-                  method:"GET",
-                  headers: {"Content-Type": "application/json"},
-                  credentials: 'include'
-              })
-
-              const content = await response.json()
-              setUsername(content.userName)
-              setUserid(content.id)
-              setIsAuthenticated(content.id ? true : false)
-          }
-          
-      )();
-  })
-
-  function isAuth() {
-    return isAuthenticated
+  const getAllListings = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/listing/',{})
+      setListings(res.data)
+    }
+    catch(e) {
+      console.log(e)
+    }
+    
   }
 
+  const getListingById = (id) => {
+    // getAllListings()
+    console.log(listings);
+    console.log(listings.filter(listing => listing.id === id))
+  }
+
+  const getAllUsers = async () => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/user/')
+      setUsers(res.data)
+    }
+    catch (e){
+      console.log(e);
+    }
+    
+  }
+
+  const getUserById = (id) => {
+    return (users.filter(user => user.id === id).map(user => <b key={user.id}>{user.userName}</b>))
+  }
+  
 
   return (
     <BrowserRouter>
-
-      <Navigation logout={logout}/>
-
-      {console.log(isAuth())}
-
       <div>
+<<<<<<< Updated upstream
         <Switch>
           <Route path="/" component={Home} exact/>
           <Route path="/blog" isAuthenticated={isAuthenticated} component={() => <Blog  isAuthenticated={isAuthenticated} userid={userid}  />} exact/>
@@ -99,10 +97,45 @@ const App = () => {
           <Route path="/register" isAuthenticated={isAuthenticated} component={RegisterForm} exact/>
           <Route isAuthenticated={isAuthenticated} path="/login" component={LoginForm} exact/>
         </Switch>
+=======
+        <NavBar variant='blue' />
+        <div className="container">
+          <Switch>
+            <Route exact path='/' render={Home} />
+            <Route exact path='/listings' render={props => (
+              <Listing
+                {...props} 
+                getAllListings={getAllListings} 
+                listings={listings}
+                getUserById={getUserById}
+                getAllUsers={getAllUsers}
+              />
+            )} />
+            <Route exact path='/listings/add' render={props =>(
+              <AddListing
+                {...props}
+                redirect={redirect}
+                setRedirect={setRedirect}
+              />
+            )} />
+
+            <Route exact path='/listings/update/:id' render={props =>(
+              <UpdateListing
+                {...props}
+                getAllListings={getAllListings}
+                // listing={listing}
+                getListingById={getListingById}
+                redirect={redirect}
+                setRedirect={setRedirect}
+              />
+            )} />
+          </Switch>
+        </div>
+>>>>>>> Stashed changes
       </div>
     </BrowserRouter>
+    
   )
 }
 
 export default App
-

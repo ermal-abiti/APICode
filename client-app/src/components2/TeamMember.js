@@ -1,8 +1,13 @@
 const TeamMember = ({name, position, github, instagram, linkedin, twitter, align}) => {
 
     return (
+<<<<<<< Updated upstream:client-app/src/components/TeamMember.js
         <div className={`member ${align === 'right' ? 'right' : ''}`}>
             <i class="far fa-user-circle"></i>
+=======
+        <div className={`member ${align == 'right' ? 'right' : ''}`}>
+            <i className="far fa-user-circle"></i>
+>>>>>>> Stashed changes:client-app/src/components2/TeamMember.js
 
             <div className="info">
                 <h2>{ name }</h2>
@@ -10,16 +15,16 @@ const TeamMember = ({name, position, github, instagram, linkedin, twitter, align
 
                 <div className="socials">
                     <a href={github}>
-                        <i class="fab fa-github"></i>
+                        <i className="fab fa-github"></i>
                     </a>
                     <a href={instagram}>
-                        <i class="fab fa-instagram"></i>
+                        <i className="fab fa-instagram"></i>
                     </a>
                     <a href={linkedin}>
-                        <i class="fab fa-linkedin"></i>
+                        <i className="fab fa-linkedin"></i>
                     </a>
                     <a href={twitter}>
-                        <i class="fab fa-twitter"></i>
+                        <i className="fab fa-twitter"></i>
                     </a>
                 </div>
             </div>
